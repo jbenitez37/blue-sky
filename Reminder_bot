@@ -1,0 +1,70 @@
+import email, smtplib, ssl
+from email.message import EmailMessage
+import time 
+#################################
+
+def email_alert(subject,body, to):
+    msg = EmailMessage()
+    msg.set_content(body)
+    msg['subject'] = subject
+    msg['to'] = to
+
+    user = "j2116008@gmail.com"
+    msg['from'] = user
+    password = "futhbehlyhqretcl"
+
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
+    server.login(user, password)
+    server.send_message(msg)
+
+    server.quit()
+
+##################################
+
+
+add = "yes"
+reminderlist = []
+print("What should I remind you: ")
+text = str(input())
+reminderlist.append(text)
+print("In how many minute?")
+local_time = float(input())
+local_time = local_time*60
+add = input("Is there anything else you'd like to be reminded(yes/no)?: ")
+
+
+if add == "yes":
+    print("What should I remind you:")
+    text = str(input())
+    reminderlist.append(text)
+    print ("In how many minutes?")
+    local_time = float(input())
+    local_time = local_time*60
+    add = input("Is there anything else you'd like to be reminded(yes/no)?: ")
+
+if add == "no":
+    print("Ok got it!")
+    time.sleep(local_time)
+    print("Time for " + text)
+
+#if text in reminderlist == local_time:
+   # time.sleep
+#print (text)
+##if add == "no":
+  ##  print("Ok got it!")
+    ##time.sleep(local_time)
+    ##print("Time for " + reminderlist[1])
+
+    
+##def getWord(reminderlist) :
+  ##  slot = len(reminderlist) - 1
+    ##return reminderlist[slot]
+
+   ##last part is where the message goes to,interchangeable with a email as well. 
+   ##If you use a phone number follow with the carrier gateway domain.
+if __name__ == '__main__':   
+    email_alert("Its reminder time", "It is time for: " + text, "6504507443@mms.cricketwireless.net")
+
+
+
