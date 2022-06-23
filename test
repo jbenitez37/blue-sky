@@ -1,0 +1,27 @@
+import email, smtplib, ssl
+from email.message import EmailMessage
+
+def email_alert(subject,body, to):
+    msg = EmailMessage()
+    msg.set_content(body)
+    msg['subject'] = subject
+    msg['to'] = to
+
+    user = "j2116008@gmail.com"
+    msg['from'] = user
+    password = "futhbehlyhqretcl"
+
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
+    server.login(user, password)
+    server.send_message(msg)
+
+    server.quit()
+   
+   ##last part is where the message goes to,interchangeable with a email as well. 
+   ##If you use a phone number follow with the carrier gateway domain.
+if __name__ == '__main__':   
+    email_alert("Its reminder time", "It's eating time", "6504507443@mms.cricketwireless.net")
+
+
+
